@@ -1,4 +1,28 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
 console.log(galleryItems);
+
+const gallery = document.querySelector(".gallery");
+console.log(gallery);
+
+const galleryItemEl = galleryItems
+  .map(
+    (galleryItem) =>
+      `<li>
+    <a class = "gallery__item" target="_blank"  rel="noopener" href = ${galleryItem.original}>
+    <img  class="gallery__image" src="${galleryItem.preview}" alt="${galleryItem.description}"  />
+    </a>
+    </li>`
+  )
+  .join("");
+
+gallery.insertAdjacentHTML("beforeend", galleryItemEl);
+
+console.log(galleryItemEl);
+
+new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
+});
